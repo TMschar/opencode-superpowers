@@ -25,27 +25,34 @@ EOF
 }
 
 install_global() {
-  local target_dir="${HOME}/.config/opencode/plugins/superpowers"
+  local plugin_dir="${HOME}/.config/opencode/plugins/superpowers"
+  local agent_dir="${HOME}/.config/opencode/agent"
   
-  mkdir -p "$(dirname "$target_dir")"
+  mkdir -p "$(dirname "$plugin_dir")"
+  mkdir -p "$agent_dir"
   
-  if [ -d "$target_dir" ]; then
-    echo "⚠️  Superpowers already installed at $target_dir"
+  if [ -d "$plugin_dir" ]; then
+    echo "⚠️  Superpowers already installed at $plugin_dir"
     read -p "Overwrite? (y/n) " -n 1 -r
     echo
     if [[ ! $REPLY =~ ^[Yy]$ ]]; then
       echo "Installation cancelled."
       return 1
     fi
-    rm -rf "$target_dir"
+    rm -rf "$plugin_dir"
   fi
   
-  cp -r "$SUPERPOWERS_SOURCE" "$target_dir"
-  echo "✓ Superpowers installed globally to $target_dir"
+  cp -r "$SUPERPOWERS_SOURCE" "$plugin_dir"
+  
+  cp "$plugin_dir/.opencode/agent"/* "$agent_dir/"
+  
+  echo "✓ Superpowers installed globally"
+  echo "  - Plugin: $plugin_dir"
+  echo "  - Agents: $agent_dir"
   echo ""
   echo "Next steps:"
   echo "  1. Restart OpenCode"
-  echo "  2. Skills and agents will be automatically available"
+  echo "  2. Agents (@tdd, @brainstorm, @debug, @planner, @review, @verify) will be available"
 }
 
 install_project() {
@@ -54,27 +61,33 @@ install_project() {
     return 1
   fi
   
-  local target_dir=".opencode/plugins/superpowers"
+  local plugin_dir=".opencode/plugins/superpowers"
   
-  mkdir -p "$(dirname "$target_dir")"
+  mkdir -p "$(dirname "$plugin_dir")"
   
-  if [ -d "$target_dir" ]; then
-    echo "⚠️  Superpowers already installed at $target_dir"
+  if [ -d "$plugin_dir" ]; then
+    echo "⚠️  Superpowers already installed at $plugin_dir"
     read -p "Overwrite? (y/n) " -n 1 -r
     echo
     if [[ ! $REPLY =~ ^[Yy]$ ]]; then
       echo "Installation cancelled."
       return 1
     fi
-    rm -rf "$target_dir"
+    rm -rf "$plugin_dir"
   fi
   
-  cp -r "$SUPERPOWERS_SOURCE" "$target_dir"
-  echo "✓ Superpowers installed to $target_dir"
+  cp -r "$SUPERPOWERS_SOURCE" "$plugin_dir"
+  
+  mkdir -p ".opencode/agent"
+  cp "$plugin_dir/.opencode/agent"/* ".opencode/agent/"
+  
+  echo "✓ Superpowers installed to project"
+  echo "  - Plugin: $plugin_dir"
+  echo "  - Agents: .opencode/agent/"
   echo ""
   echo "Next steps:"
   echo "  1. Restart OpenCode in this project"
-  echo "  2. Skills and agents will be automatically available"
+  echo "  2. Agents (@tdd, @brainstorm, @debug, @planner, @review, @verify) will be available"
 }
 
 main() {
