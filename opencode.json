@@ -1,0 +1,89 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "model": "anthropic/claude-sonnet-4-20250514",
+  "small_model": "anthropic/claude-3-5-haiku-20241022",
+  "agent": {
+    "build": {
+      "description": "Build mode - develop with full access to all tools",
+      "mode": "primary",
+      "temperature": 0.3,
+      "tools": {
+        "write": true,
+        "edit": true,
+        "bash": true
+      }
+    },
+    "plan": {
+      "description": "Plan mode - analyze and create plans without making changes",
+      "mode": "primary",
+      "temperature": 0.2,
+      "tools": {
+        "write": false,
+        "edit": false,
+        "bash": false
+      }
+    },
+    "tdd": {
+      "description": "Test-Driven Development - write tests first, minimal code to pass",
+      "mode": "subagent",
+      "temperature": 0.1,
+      "tools": {
+        "write": true,
+        "edit": true,
+        "bash": true
+      }
+    },
+    "brainstorm": {
+      "description": "Refine rough ideas into fully-formed designs through Socratic questioning",
+      "mode": "subagent",
+      "temperature": 0.3,
+      "tools": {
+        "write": true,
+        "edit": true,
+        "read": true
+      }
+    },
+    "debug": {
+      "description": "Find root cause of bugs and issues before proposing fixes",
+      "mode": "subagent",
+      "temperature": 0.1,
+      "tools": {
+        "bash": true,
+        "read": true,
+        "grep": true,
+        "glob": true
+      }
+    },
+    "planner": {
+      "description": "Create detailed implementation plans with task breakdown and sequencing",
+      "mode": "subagent",
+      "temperature": 0.2,
+      "tools": {
+        "write": true,
+        "read": true,
+        "bash": true
+      }
+    },
+    "review": {
+      "description": "Thorough code review for quality, security, performance, and maintainability",
+      "mode": "subagent",
+      "temperature": 0.1,
+      "tools": {
+        "read": true,
+        "bash": true,
+        "write": false,
+        "edit": false
+      }
+    },
+    "verify": {
+      "description": "Verify work is complete using defense-in-depth validation layers",
+      "mode": "subagent",
+      "temperature": 0.2,
+      "tools": {
+        "bash": true,
+        "read": true,
+        "grep": true
+      }
+    }
+  }
+}
