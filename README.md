@@ -2,7 +2,7 @@
 
 Give your AI coding agent superpowers with a comprehensive library of proven techniques, patterns, and workflows.
 
-Works with [OpenCode](https://opencode.ai) and Claude Code.
+Works with [OpenCode](https://opencode.ai).
 
 ## What You Get
 
@@ -19,18 +19,24 @@ Plus:
 
 ## Learn More
 
-Read the introduction: [Superpowers for Claude Code](https://blog.fsck.com/2025/10/09/superpowers/)
+Read the introduction: [Superpowers for OpenCode](https://blog.fsck.com/2025/10/09/superpowers/)
 
-## Installation with OpenCode
+## Installation
 
-### Quick Start
+### As a Plugin
+
+Install as an OpenCode plugin:
 
 ```bash
-cd /your/project
-opencode
+# Globally
+cp -r . ~/.config/opencode/plugins/superpowers
+
+# Or project-specific
+mkdir -p .opencode/plugins
+cp -r . .opencode/plugins/superpowers
 ```
 
-OpenCode will automatically discover the `.opencode/` configuration and agents in this repository.
+Then restart OpenCode. The agents and skills will be available automatically.
 
 ### Available Agents
 
@@ -54,28 +60,22 @@ Invoke agents using the `@` mention syntax:
 @verify Is the payment processing feature complete and tested?
 ```
 
-## Installation with Claude Code
-
-Claude Code is no longer actively maintained. This project has been migrated to OpenCode, which offers better agent-based workflows and superior tool integration.
-
-For Claude Code users, the legacy plugin is still available via the marketplace, but new development should use OpenCode instead.
-
 ## What's Inside
 
 ### Skills Library
 
-**Testing** (`skills/testing/`)
+**Testing** (`skills/`)
 - **test-driven-development** - RED-GREEN-REFACTOR cycle
 - **condition-based-waiting** - Async test patterns
 - **testing-anti-patterns** - Common pitfalls to avoid
 
-**Debugging** (`skills/debugging/`)
+**Debugging** (`skills/`)
 - **systematic-debugging** - 4-phase root cause process
 - **root-cause-tracing** - Find the real problem
 - **verification-before-completion** - Ensure it's actually fixed
 - **defense-in-depth** - Multiple validation layers
 
-**Collaboration** (`skills/collaboration/`)
+**Collaboration** (`skills/`)
 - **brainstorming** - Socratic design refinement
 - **writing-plans** - Detailed implementation plans
 - **executing-plans** - Batch execution with checkpoints
@@ -86,15 +86,11 @@ For Claude Code users, the legacy plugin is still available via the marketplace,
 - **finishing-a-development-branch** - Merge/PR decision workflow
 - **subagent-driven-development** - Fast iteration with quality gates
 
-**Meta** (`skills/meta/`)
+**Meta** (`skills/`)
 - **writing-skills** - Create new skills following best practices
 - **sharing-skills** - Contribute skills back via branch and PR
 - **testing-skills-with-subagents** - Validate skill quality
 - **using-superpowers** - Introduction to the skills system
-
-### Commands
-
-The `commands/` directory contains legacy slash commands for Claude Code. These are maintained for backwards compatibility but are superseded by the agent-based approach in OpenCode.
 
 ## How It Works
 
@@ -104,6 +100,7 @@ OpenCode automatically discovers the `.opencode/` configuration and makes agents
 - **6 Subagents** - Specialized agents for specific tasks like TDD, debugging, and code review
 - **Skills Library** - Large collection of proven patterns and workflows
 - **Automatic Discovery** - Agents read from `.opencode/agent/` directory
+- **Plugin System** - Hooks in `hooks/` extend OpenCode behavior
 
 ## Philosophy
 
