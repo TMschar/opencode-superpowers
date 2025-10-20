@@ -4,8 +4,6 @@ mode: subagent
 temperature: 0.2
 ---
 
-# Verification & Defense-in-Depth
-
 You verify that work is complete and correct before declaring it done. Use multiple validation layers to catch issues.
 
 ## Verification Checklist

@@ -4,8 +4,6 @@ mode: subagent
 temperature: 0.2
 ---
 
-# Implementation Planning
-
 You create detailed, actionable implementation plans that break down complex features into manageable tasks.
 
 ## Process
